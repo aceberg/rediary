@@ -4,16 +4,60 @@
         <div class="row">
             <div class="col"></div>
             <div class="col">
+                <table class="table">
                 <form action="/add_record/" method="post">
-                    <select name="name" class="form-select">
-                        {{ range .Themes }}
-                            <option value="{{ . }}">{{ . }}</option>
-                        {{ end }}
-                    </select>
-                    <input name="munus" type="range" class="form-range" min="0" max="5" step="1">
-                    <input name="plus" type="range" class="form-range" min="0" max="5" step="1">
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <tr>
+                        <td>Date</td>
+                        <td><input name="date" type="date" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td><select name="name" class="form-select">
+                            {{ range .Themes }}
+                                <option value="{{ . }}">{{ . }}</option>
+                            {{ end }}
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Minus</td>
+                        <td><input name="minus" type="range" class="form-range" min="0" max="5" step="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Plus</td>
+                        <td><input name="plus" type="range" class="form-range" min="0" max="5" step="1"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </td>
+                    </tr>
                 </form>
+                </table>
+                <b>Today - {{ .OneRec.Date }}</b>
+                <br>
+                <table class="table table-striped">
+                <thead>
+                    <th>Name</th>
+                    <th>Minus</th>
+                    <th>Plus</th>
+                    <th>Total</th>
+                </thead>
+                {{ range .Records }}
+                    <tr>
+                        <td>{{ .Name }}</td>
+                        <td>-{{ .Minus }}</td>
+                        <td>+{{ .Plus }}</td>
+                        <td>{{ .Total }}</td>
+                    </tr>
+                {{ end }}
+                    <tr>
+                        <td><b>Summary</b></td>
+                        <td><b>-{{ .OneRec.Minus }}</b></td>
+                        <td><b>+{{ .OneRec.Plus }}</b></td>
+                        <td><b>{{ .OneRec.Total }}</b></td>
+                    </tr>
+                </table>
             </div>
             <div class="col"></div>
         </div>

@@ -11,25 +11,12 @@
                     <td><input name="db" type="text" class="form-control" value="{{ .Config.DB }}"></td>
                 </tr>
                 <tr>
-                    <td>Delete older<br>
-                        than (days)</td>
-                    <td><input name="delold" type="text" class="form-control" value="{{ .Config.DelOld }}"></td>
-                </tr>
-                <tr>
-                    <td>Domain Name</td>
-                    <td><input name="hname" type="text" class="form-control" value="{{ .Config.HName }}"></td>
-                </tr>
-                <tr>
                     <td>Host</td>
                     <td><input name="host" type="text" class="form-control" value="{{ .Config.Host }}"></td>
                 </tr>
                 <tr>
                     <td>Port</td>
                     <td><input name="port" type="text" class="form-control" value="{{ .Config.Port }}"></td>
-                </tr>
-                <tr>
-                    <td>Show</td>
-                    <td><input name="show" type="text" class="form-control" value="{{ .Config.Show }}"></td>
                 </tr>
                 <tr>
                     <td>Theme</td>
@@ -41,10 +28,6 @@
                     </select></td>
                 </tr>
                 <tr>
-                    <td>Yaml Path</td>
-                    <td><input name="yamlpath" type="text" class="form-control" value="{{ .Config.YamlPath }}"></td>
-                </tr>
-                <tr>
                     <td><button type="submit" class="btn btn-primary">Save</button></td>
                     <td></td>
                 </tr>
@@ -53,10 +36,7 @@
         </div>
         <div class="col">
             <div class="alert alert-info" role="alert">
-                <p>● After changing <b>DB Path</b>, <b>Host</b>, <b>Port</b> or <b>Yaml Path</b> you need to restart the app</p>
-                <p>● <b>Show</b> - how many lines to show on log page</p>
-                <p>● <b>Yaml Path</b> - path to `hosts.yaml` or other file, where monitored hosts are described</p>
-                <p>● <b>Alerts</b> can send notifications to Discord, Email, Gotify, Telegram and other services. Just put Name and URL in the fields below. <a href="https://containrrr.dev/shoutrrr/v0.5/services/overview/" target="_blank">Link to documentation.</a>
+                <p>● After changing <b>DB Path</b>, <b>Host</b> or <b>Port</b> you need to restart the app</p>
             </div>
             <br>
             <form action="/clear/" method="post">
@@ -65,37 +45,7 @@
         </div>
     </div>
     <div class="row">
-        <h5>Alerts</h5>
-        <form action="/alert_add/" method="post" class="input-group">
-            <input name="name" type="text" class="form-control" placeholder="Name" style="max-width: 15%;">
-            <input name="url" type="text" class="form-control" placeholder="URL">
-            <button type="submit" class="btn btn-primary">Add</button>
-        </form>
-        <br>
-        <table class="table table-striped">
-            <tr>
-                <th style="width: 5%;">Del</th>
-                <th>Name</th>
-                <th>URL</th>
-                <th></th>
-            </tr>
-            {{ range $key, $value := .Config.AlertMap }}
-            <tr>
-                <td>
-                    <a href="/alert_del?name={{ $key }}">
-                        <i class="bi bi-x-square"></i>
-                    </a>
-                </td>
-                <td>{{ $key }}</td>
-                <td>{{ $value }}</td>
-                <td>
-                    <a href="/alert_test?name={{ $key }}">
-                        <button class="btn btn-primary">Test</button>
-                    </a>
-                </td>
-            </tr>
-            {{ end }}
-        </table>
+        
     </div>
     </div>
         

@@ -8,6 +8,7 @@ type Conf struct {
 	Theme    string
 	Icon     string
 	ConfPath string
+	Actions []string
 }
 
 // Record - write to DB
@@ -17,11 +18,13 @@ type Record struct {
 	Name  string `db:"NAME"`
 	Minus int    `db:"MINUS"`
 	Plus  int    `db:"PLUS"`
+	Total int    `db:"TOTAL"`
 }
 
 // GuiData - web gui data
 type GuiData struct {
 	Config  Conf
 	Records []Record
+	OneRec  Record
 	Themes  []string
 }

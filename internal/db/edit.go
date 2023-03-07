@@ -14,7 +14,8 @@ func Create(path string) {
 		"DATE"		TEXT,
 		"NAME"		TEXT,
 		"MINUS"		TEXT,
-		"PLUS"		TEXT
+		"PLUS"		TEXT,
+		"TOTAL"		TEXT
 	);`
 	exec(path, sqlStatement)
 }
@@ -22,12 +23,12 @@ func Create(path string) {
 // Insert - insert one rec into DB
 func Insert(path string, rec models.Record) {
 
-	sqlStatement := `INSERT INTO records (DATE, NAME, MINUS, PLUS) 
-	VALUES ('%s','%s','%d','%d');`
+	sqlStatement := `INSERT INTO records (DATE, NAME, MINUS, PLUS, TOTAL) 
+	VALUES ('%s','%s','%d','%d','%d');`
 
 	rec.Name = quoteStr(rec.Name)
 
-	sqlStatement = fmt.Sprintf(sqlStatement, rec.Date, rec.Name, rec.Minus, rec.Plus)
+	sqlStatement = fmt.Sprintf(sqlStatement, rec.Date, rec.Name, rec.Minus, rec.Plus, rec.Total)
 
 	exec(path, sqlStatement)
 }
