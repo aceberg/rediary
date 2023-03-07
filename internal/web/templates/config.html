@@ -45,7 +45,24 @@
         </div>
     </div>
     <div class="row">
-        
+        <b>Actions</b>
+        <br>
+        <div class="col">
+            <form action="/del_action/" method="post" class="input-group">
+                <select name="name" class="form-select">
+                    {{ range .Config.Actions }}
+                        <option value="{{ . }}">{{ . }}</option>
+                    {{ end }}
+                </select>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+        <div class="col">
+            <form action="/add_action/" method="post" class="input-group">
+                <input name="name" type="text" class="form-control">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
     </div>
     </div>
         

@@ -8,7 +8,7 @@ type Conf struct {
 	Theme    string
 	Icon     string
 	ConfPath string
-	Actions []string
+	Actions  []string
 }
 
 // Record - write to DB

@@ -12,7 +12,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	var guiData models.GuiData
 
 	guiData.Config = AppConfig
-	guiData.Themes = []string{"cerulean", "cosmo", "cyborg"}
 
 	AllRecords = db.Select(AppConfig.DB)
 

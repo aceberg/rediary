@@ -28,9 +28,11 @@ func Gui(config models.Conf) {
 	log.Println("=================================== ")
 
 	http.HandleFunc("/", indexHandler)
+	http.HandleFunc("/add_action/", addActionHandler)
 	http.HandleFunc("/add_record/", addRecordHandler)
 	http.HandleFunc("/clear/", clearHandler)
 	http.HandleFunc("/config/", configHandler)
+	http.HandleFunc("/del_action/", delActionHandler)
 	http.HandleFunc("/save_config/", saveConfigHandler)
 	err := http.ListenAndServe(address, nil)
 	check.IfError(err)

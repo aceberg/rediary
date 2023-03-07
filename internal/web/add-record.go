@@ -1,7 +1,7 @@
 package web
 
 import (
-	"log"
+	// "log"
 	"net/http"
 	"strconv"
 	"time"
@@ -29,7 +29,7 @@ func addRecordHandler(w http.ResponseWriter, r *http.Request) {
 		rec.Date = date
 	}
 
-	log.Println("INFO: new record", rec)
+	// log.Println("INFO: new record", rec)
 
 	db.Insert(AppConfig.DB, rec)
 

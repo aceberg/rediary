@@ -13,7 +13,7 @@
                     <tr>
                         <td>Name</td>
                         <td><select name="name" class="form-select">
-                            {{ range .Themes }}
+                            {{ range .Config.Actions }}
                                 <option value="{{ . }}">{{ . }}</option>
                             {{ end }}
                         </select></td>

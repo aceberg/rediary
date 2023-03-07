@@ -27,6 +27,7 @@ func Get(path string) models.Conf {
 	config.Host, _ = viper.Get("HOST").(string)
 	config.Port, _ = viper.Get("PORT").(string)
 	config.Theme, _ = viper.Get("THEME").(string)
+	config.Actions = viper.GetStringSlice("ACTIONS")
 
 	return config
 }
@@ -41,6 +42,7 @@ func Write(config models.Conf) {
 	viper.Set("host", config.Host)
 	viper.Set("port", config.Port)
 	viper.Set("theme", config.Theme)
+	viper.Set("actions", config.Actions)
 
 	err := viper.WriteConfig()
 	check.IfError(err)
