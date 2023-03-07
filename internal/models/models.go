@@ -12,13 +12,16 @@ type Conf struct {
 
 // Record - write to DB
 type Record struct {
-	ID   int    `db:"ID"`
-	Date string `db:"DATE"`
-	Name string `db:"NAME"`
+	ID    int    `db:"ID"`
+	Date  string `db:"DATE"`
+	Name  string `db:"NAME"`
+	Minus int    `db:"MINUS"`
+	Plus  int    `db:"PLUS"`
 }
 
 // GuiData - web gui data
 type GuiData struct {
-	Config Conf
-	Themes []string
+	Config  Conf
+	Records []Record
+	Themes  []string
 }

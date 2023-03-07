@@ -6,6 +6,7 @@ import (
 
 	"github.com/aceberg/red/internal/check"
 	"github.com/aceberg/red/internal/conf"
+	"github.com/aceberg/red/internal/db"
 	"github.com/aceberg/red/internal/models"
 )
 
@@ -13,7 +14,11 @@ import (
 func Gui(config models.Conf) {
 
 	AppConfig = conf.Get(config.ConfPath)
+	AppConfig.ConfPath = config.ConfPath
 	AppConfig.Icon = Icon
+
+	db.Create(AppConfig.DB)
+	AllRecords = db.Select(AppConfig.DB)
 
 	log.Println("INFO: starting web gui with", AppConfig.ConfPath)
 

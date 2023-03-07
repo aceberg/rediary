@@ -2,7 +2,20 @@
 <body>
     <div class="container mt-3">
         <div class="row">
-            Test
+            <div class="col"></div>
+            <div class="col">
+                <form action="/add_record/" method="post">
+                    <select name="name" class="form-select">
+                        {{ range .Themes }}
+                            <option value="{{ . }}">{{ . }}</option>
+                        {{ end }}
+                    </select>
+                    <input name="munus" type="range" class="form-range" min="0" max="5" step="1">
+                    <input name="plus" type="range" class="form-range" min="0" max="5" step="1">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+            <div class="col"></div>
         </div>
     </div>
 {{ template "footer" }}

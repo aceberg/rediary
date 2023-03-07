@@ -9,6 +9,8 @@ import (
 var (
 	// AppConfig - config for Web Gui
 	AppConfig models.Conf
+	// AllRecords - all records
+	AllRecords []models.Record
 	// TemplHTML - embed templates
 	// //
 	// //go:embed templates/*
