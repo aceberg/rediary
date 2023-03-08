@@ -5,12 +5,12 @@ import (
 
 	_ "time/tzdata"
 
-	"github.com/aceberg/red/internal/check"
-	"github.com/aceberg/red/internal/models"
-	"github.com/aceberg/red/internal/web"
+	"github.com/aceberg/rediary/internal/check"
+	"github.com/aceberg/rediary/internal/models"
+	"github.com/aceberg/rediary/internal/web"
 )
 
-const confPath = "/data/red/config.yaml"
+const confPath = "/data/rediary/config.yaml"
 
 func main() {
 	var conf models.Conf

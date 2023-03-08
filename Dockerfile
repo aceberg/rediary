@@ -5,14 +5,14 @@ COPY cmd /src/cmd
 COPY internal /src/internal
 COPY go.mod /src/
 COPY go.sum /src/
-RUN cd /src/cmd/red/ && CGO_ENABLED=0 go build -o /red .
+RUN cd /src/cmd/rediary/ && CGO_ENABLED=0 go build -o /rediary .
 
 
 FROM scratch
 
-WORKDIR /data/red
+WORKDIR /data/rediary
 WORKDIR /app
 
-COPY --from=builder /red /app/
+COPY --from=builder /rediary /app/
 
-ENTRYPOINT ["./red"]
+ENTRYPOINT ["./rediary"]

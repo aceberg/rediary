@@ -4,8 +4,8 @@ import (
 	"html/template"
 	"net/http"
 
-	"github.com/aceberg/red/internal/check"
-	"github.com/aceberg/red/internal/models"
+	"github.com/aceberg/rediary/internal/check"
+	"github.com/aceberg/rediary/internal/models"
 )
 
 func execTemplate(w http.ResponseWriter, tpl string, guiData models.GuiData) {

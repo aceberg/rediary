@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 
-	"github.com/aceberg/red/internal/models"
+	"github.com/aceberg/rediary/internal/models"
 )
 
 // Create - create table if not exists

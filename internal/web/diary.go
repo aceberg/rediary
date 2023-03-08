@@ -3,8 +3,8 @@ package web
 import (
 	"net/http"
 
-	"github.com/aceberg/red/internal/db"
-	"github.com/aceberg/red/internal/models"
+	"github.com/aceberg/rediary/internal/db"
+	"github.com/aceberg/rediary/internal/models"
 )
 
 func diaryHandler(w http.ResponseWriter, r *http.Request) {

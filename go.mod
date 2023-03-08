@@ -1,4 +1,4 @@
-module github.com/aceberg/red
+module github.com/aceberg/rediary
 
 go 1.19
 

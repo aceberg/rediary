@@ -3,7 +3,7 @@ package web
 import (
 	// "embed"
 
-	"github.com/aceberg/red/internal/models"
+	"github.com/aceberg/rediary/internal/models"
 )
 
 var (

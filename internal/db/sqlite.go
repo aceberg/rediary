@@ -6,8 +6,8 @@ import (
 	// Import module for SQLite DB
 	_ "modernc.org/sqlite"
 
-	"github.com/aceberg/red/internal/check"
-	"github.com/aceberg/red/internal/models"
+	"github.com/aceberg/rediary/internal/check"
+	"github.com/aceberg/rediary/internal/models"
 )
 
 func connect(path string) *sqlx.DB {

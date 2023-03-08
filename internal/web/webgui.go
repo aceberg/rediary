@@ -4,10 +4,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/aceberg/red/internal/check"
-	"github.com/aceberg/red/internal/conf"
-	"github.com/aceberg/red/internal/db"
-	"github.com/aceberg/red/internal/models"
+	"github.com/aceberg/rediary/internal/check"
+	"github.com/aceberg/rediary/internal/conf"
+	"github.com/aceberg/rediary/internal/db"
+	"github.com/aceberg/rediary/internal/models"
 )
 
 // Gui - start web server

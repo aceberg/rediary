@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/aceberg/red/internal/db"
-	"github.com/aceberg/red/internal/models"
+	"github.com/aceberg/rediary/internal/db"
+	"github.com/aceberg/rediary/internal/models"
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {

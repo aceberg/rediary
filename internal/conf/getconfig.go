@@ -3,15 +3,15 @@ package conf
 import (
 	"github.com/spf13/viper"
 
-	"github.com/aceberg/red/internal/check"
-	"github.com/aceberg/red/internal/models"
+	"github.com/aceberg/rediary/internal/check"
+	"github.com/aceberg/rediary/internal/models"
 )
 
 // Get - read config from file or env
 func Get(path string) models.Conf {
 	var config models.Conf
 
-	viper.SetDefault("DB", "/data/red/sqlite.db")
+	viper.SetDefault("DB", "/data/rediary/sqlite.db")
 	viper.SetDefault("HOST", "0.0.0.0")
 	viper.SetDefault("PORT", "8847")
 	viper.SetDefault("THEME", "minty")

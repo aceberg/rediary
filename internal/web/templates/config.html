@@ -45,10 +45,14 @@
         </div>
     </div>
     <div class="row">
-        <b>Actions</b>
-        <br>
         <div class="col">
-            <form action="/del_action/" method="post" class="input-group">
+            <b>Tags</b>
+            <form action="/add_tag/" method="post" class="input-group">
+                <input name="name" type="text" class="form-control">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+            <br>
+            <form action="/del_tag/" method="post" class="input-group">
                 <select name="name" class="form-select">
                     {{ range .Config.Actions }}
                         <option value="{{ . }}">{{ . }}</option>
@@ -58,9 +62,19 @@
             </form>
         </div>
         <div class="col">
+            <b>Actions</b>
             <form action="/add_action/" method="post" class="input-group">
                 <input name="name" type="text" class="form-control">
                 <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+            <br>
+            <form action="/del_action/" method="post" class="input-group">
+                <select name="name" class="form-select">
+                    {{ range .Config.Actions }}
+                        <option value="{{ . }}">{{ . }}</option>
+                    {{ end }}
+                </select>
+                <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </div>
     </div>

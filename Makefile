@@ -1,11 +1,11 @@
 mod:
 	rm go.mod || true && \
 	rm go.sum || true && \
-	go mod init github.com/aceberg/red && \
+	go mod init github.com/aceberg/rediary && \
 	go mod tidy
 
 run:
-	cd cmd/red/ && \
+	cd cmd/rediary/ && \
 	go run .
 
 fmt:
@@ -18,5 +18,5 @@ lint:
 check: fmt lint
 
 go-build:
-	cd cmd/red/ && \
-	CGO_ENABLED=0 go build -o ../../tmp/red .
+	cd cmd/rediary/ && \
+	CGO_ENABLED=0 go build -o ../../tmp/rediary .
