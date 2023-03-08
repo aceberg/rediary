@@ -33,6 +33,7 @@ func Gui(config models.Conf) {
 	http.HandleFunc("/clear/", clearHandler)
 	http.HandleFunc("/config/", configHandler)
 	http.HandleFunc("/del_action/", delActionHandler)
+	http.HandleFunc("/diary/", diaryHandler)
 	http.HandleFunc("/save_config/", saveConfigHandler)
 	err := http.ListenAndServe(address, nil)
 	check.IfError(err)

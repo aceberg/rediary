@@ -53,9 +53,15 @@
                 {{ end }}
                     <tr>
                         <td><b>Summary</b></td>
-                        <td><b>-{{ .OneRec.Minus }}</b></td>
-                        <td><b>+{{ .OneRec.Plus }}</b></td>
-                        <td><b>{{ .OneRec.Total }}</b></td>
+                        <td><b class="my-minus">-{{ .OneRec.Minus }}</b></td>
+                        <td><b class="my-plus">+{{ .OneRec.Plus }}</b></td>
+                        <td>
+                            {{ if gt .OneRec.Total 0 }}
+                            <b class="my-plus">{{ .OneRec.Total }}</b>
+                            {{ else }}
+                            <b class="my-minus">{{ .OneRec.Total }}</b>
+                            {{ end }}
+                        </td>
                     </tr>
                 </table>
             </div>

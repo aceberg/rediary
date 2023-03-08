@@ -8,7 +8,16 @@
     <!-- Bootstrap and theme -->
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/{{ .Config.Theme }}/bootstrap.min.css" rel="stylesheet">
     <!-- Font for icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"> -->
+
+    <style>
+      .my-minus {
+        color:rgb(0, 174, 255);
+      }
+      .my-plus {
+        color:rgb(255, 51, 0);
+      }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
@@ -21,6 +30,12 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/diary/">Diary</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/stat/">Stat</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" href="/config/">Config</a>
