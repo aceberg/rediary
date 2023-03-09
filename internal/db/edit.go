@@ -12,7 +12,9 @@ func Create(path string) {
 	sqlStatement := `CREATE TABLE IF NOT EXISTS records (
 		"ID"		INTEGER PRIMARY KEY,
 		"DATE"		TEXT,
+		"TAG"		TEXT,
 		"NAME"		TEXT,
+		"COLOR"		TEXT,
 		"MINUS"		TEXT,
 		"PLUS"		TEXT,
 		"TOTAL"		TEXT
@@ -23,12 +25,12 @@ func Create(path string) {
 // Insert - insert one rec into DB
 func Insert(path string, rec models.Record) {
 
-	sqlStatement := `INSERT INTO records (DATE, NAME, MINUS, PLUS, TOTAL) 
-	VALUES ('%s','%s','%d','%d','%d');`
+	sqlStatement := `INSERT INTO records (DATE, TAG, NAME, COLOR, MINUS, PLUS, TOTAL) 
+	VALUES ('%s','%s','%s','%s','%d','%d','%d');`
 
 	rec.Name = quoteStr(rec.Name)
 
-	sqlStatement = fmt.Sprintf(sqlStatement, rec.Date, rec.Name, rec.Minus, rec.Plus, rec.Total)
+	sqlStatement = fmt.Sprintf(sqlStatement, rec.Date, rec.Tag, rec.Name, rec.Color, rec.Minus, rec.Plus, rec.Total)
 
 	exec(path, sqlStatement)
 }

@@ -46,37 +46,23 @@
     </div>
     <div class="row">
         <div class="col">
-            <b>Tags</b>
-            <form action="/add_tag/" method="post" class="input-group">
-                <input name="name" type="text" class="form-control">
-                <button type="submit" class="btn btn-primary">Add</button>
-            </form>
-            <br>
-            <form action="/del_tag/" method="post" class="input-group">
-                <select name="name" class="form-select">
-                    {{ range .Config.Actions }}
-                        <option value="{{ . }}">{{ . }}</option>
-                    {{ end }}
-                </select>
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </div>
-        <div class="col">
             <b>Actions</b>
             <form action="/add_action/" method="post" class="input-group">
-                <input name="name" type="text" class="form-control">
+                <input name="tag" type="text" class="form-control" placeholder="Tag">
+                <input name="name" type="text" class="form-control" placeholder="Name">
                 <button type="submit" class="btn btn-primary">Add</button>
             </form>
             <br>
             <form action="/del_action/" method="post" class="input-group">
                 <select name="name" class="form-select">
                     {{ range .Config.Actions }}
-                        <option value="{{ . }}">{{ . }}</option>
+                        <option value="{{ .Name }}">{{ .Tag }}: {{ .Name }}</option>
                     {{ end }}
                 </select>
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </div>
+        <div class="col"></div>
     </div>
     </div>
         

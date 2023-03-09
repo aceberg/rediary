@@ -10,6 +10,7 @@ import (
 // Get - read config from file or env
 func Get(path string) models.Conf {
 	var config models.Conf
+	var actions []models.Action
 
 	viper.SetDefault("DB", "/data/rediary/sqlite.db")
 	viper.SetDefault("HOST", "0.0.0.0")
@@ -27,7 +28,11 @@ func Get(path string) models.Conf {
 	config.Host, _ = viper.Get("HOST").(string)
 	config.Port, _ = viper.Get("PORT").(string)
 	config.Theme, _ = viper.Get("THEME").(string)
-	config.Actions = viper.GetStringSlice("ACTIONS")
+
+	err = viper.UnmarshalKey("actions", &actions)
+	check.IfError(err)
+
+	config.Actions = actions
 
 	return config
 }

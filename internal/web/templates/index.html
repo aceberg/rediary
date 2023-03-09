@@ -14,7 +14,7 @@
                         <td>Name</td>
                         <td><select name="name" class="form-select">
                             {{ range .Config.Actions }}
-                                <option value="{{ . }}">{{ . }}</option>
+                                <option value="{{ .Name }}">{{ .Tag }}: {{ .Name }}</option>
                             {{ end }}
                         </select></td>
                     </tr>
