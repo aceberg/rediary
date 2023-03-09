@@ -14,17 +14,17 @@
                         <td>Name</td>
                         <td><select name="name" class="form-select">
                             {{ range .Config.Actions }}
-                                <option value="{{ .Name }}">{{ .Tag }}: {{ .Name }}</option>
+                                <option value="{{ .Tag }}:{{ .Name }}">{{ .Tag }}:{{ .Name }}</option>
                             {{ end }}
                         </select></td>
                     </tr>
                     <tr>
                         <td>Minus</td>
-                        <td><input name="minus" type="range" class="form-range" min="0" max="5" step="1"></td>
+                        <td><input name="minus" type="range" min="0" max="5" step="1" class="range-minus"></td>
                     </tr>
                     <tr>
                         <td>Plus</td>
-                        <td><input name="plus" type="range" class="form-range" min="0" max="5" step="1"></td>
+                        <td><input name="plus" type="range" min="0" max="5" step="1" class="range-plus"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -38,6 +38,7 @@
                 <br>
                 <table class="table table-striped">
                 <thead>
+                    <th style="width: 0%;"></th>
                     <th>Name</th>
                     <th>Minus</th>
                     <th>Plus</th>
@@ -45,13 +46,15 @@
                 </thead>
                 {{ range .Records }}
                     <tr>
-                        <td>{{ .Name }}</td>
+                        <td><i style="color: {{ .Color }};" class="bi bi-circle-fill"></i></td>
+                        <td>{{ .Tag }}:{{ .Name }}</td>
                         <td>-{{ .Minus }}</td>
                         <td>+{{ .Plus }}</td>
                         <td>{{ .Total }}</td>
                     </tr>
                 {{ end }}
                     <tr>
+                        <td></td>
                         <td><b>Summary</b></td>
                         <td><b class="my-minus">-{{ .OneRec.Minus }}</b></td>
                         <td><b class="my-plus">+{{ .OneRec.Plus }}</b></td>

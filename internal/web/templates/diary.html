@@ -15,7 +15,7 @@
                 {{ range .Records }}
                     <tr>
                         <td>{{ .Date }}</td>
-                        <td>{{ .Name }}</td>
+                        <td>{{ .Tag }}:{{ .Name }}</td>
                         <td>-{{ .Minus }}</td>
                         <td>+{{ .Plus }}</td>
                         <td>{{ .Total }}</td>

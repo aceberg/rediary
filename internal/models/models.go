@@ -9,13 +9,13 @@ type Conf struct {
 	Icon     string
 	ConfPath string
 	Actions  []Action
+	TagMap   map[string]string
 }
 
 // Action - one action
 type Action struct {
-	Name  string `mapstructure:"name"`
-	Tag   string `mapstructure:"tag"`
-	Color string `mapstructure:"color"`
+	Name string `mapstructure:"name"`
+	Tag  string `mapstructure:"tag"`
 }
 
 // Record - write to DB

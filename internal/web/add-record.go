@@ -1,9 +1,10 @@
 package web
 
 import (
-	// "log"
+	"log"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/aceberg/rediary/internal/db"
@@ -14,9 +15,15 @@ func addRecordHandler(w http.ResponseWriter, r *http.Request) {
 	var rec models.Record
 
 	date := r.FormValue("date")
-	rec.Name = r.FormValue("name")
+	name := r.FormValue("name")
 	minus := r.FormValue("minus")
 	plus := r.FormValue("plus")
+
+	n := strings.Split(name, ":")
+
+	rec.Tag = n[0]
+	rec.Name = n[1]
+	rec.Color = AppConfig.TagMap[rec.Tag]
 
 	rec.Minus, _ = strconv.Atoi(minus)
 	rec.Plus, _ = strconv.Atoi(plus)
@@ -29,7 +36,7 @@ func addRecordHandler(w http.ResponseWriter, r *http.Request) {
 		rec.Date = date
 	}
 
-	// log.Println("INFO: new record", rec)
+	log.Println("INFO: new record", rec)
 
 	db.Insert(AppConfig.DB, rec)
 
