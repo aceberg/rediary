@@ -6,21 +6,42 @@
             <div class="col">
                 <table class="table table-striped">
                 <thead>
+                    <th style="width: 0%;"></th>
                     <th>Date</th>
                     <th>Name</th>
                     <th>Minus</th>
                     <th>Plus</th>
                     <th>Total</th>
+                    <th></th>
                 </thead>
                 {{ range .Records }}
                     <tr>
+                        <td><i style="color: {{ .Color }};" class="bi bi-circle-fill"></i></td>
                         <td>{{ .Date }}</td>
                         <td>{{ .Tag }}:{{ .Name }}</td>
                         <td>-{{ .Minus }}</td>
                         <td>+{{ .Plus }}</td>
                         <td>{{ .Total }}</td>
+                        <td>
+                            <a href="/del_record?id={{ .ID }}"><i class="bi bi-x-circle"></i></a>
+                        </td>
                     </tr>
                 {{ end }}
+                <tr>
+                    <td></td>
+                    <td><b>Summary</b></td>
+                    <td></td>
+                    <td><b class="my-minus">-{{ .OneRec.Minus }}</b></td>
+                    <td><b class="my-plus">+{{ .OneRec.Plus }}</b></td>
+                    <td>
+                        {{ if gt .OneRec.Total 0 }}
+                        <b class="my-plus">{{ .OneRec.Total }}</b>
+                        {{ else }}
+                        <b class="my-minus">{{ .OneRec.Total }}</b>
+                        {{ end }}
+                    </td>
+                    <td></td>
+                </tr>
                 </table>
             </div>
             <div class="col"></div>

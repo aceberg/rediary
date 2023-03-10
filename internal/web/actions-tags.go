@@ -1,7 +1,6 @@
 package web
 
 import (
-	"encoding/hex"
 	// "log"
 	"net/http"
 	"sort"
@@ -61,11 +60,7 @@ func addTagHandler(w http.ResponseWriter, r *http.Request) {
 
 	if tag != "" {
 		tag = strings.ToLower(tag)
-		if color == "" {
-			hexColor := hex.EncodeToString([]byte(tag))
-			hexColor = "0" + hexColor + "ffffff"
-			color = hexColor[0:6]
-		}
+
 		AppConfig.TagMap[tag] = color
 		conf.Write(AppConfig)
 	}

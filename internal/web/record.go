@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/aceberg/rediary/internal/check"
 	"github.com/aceberg/rediary/internal/db"
 	"github.com/aceberg/rediary/internal/models"
 )
@@ -39,6 +40,20 @@ func addRecordHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("INFO: new record", rec)
 
 	db.Insert(AppConfig.DB, rec)
+
+	http.Redirect(w, r, r.Header.Get("Referer"), 302)
+}
+
+func delRecordHandler(w http.ResponseWriter, r *http.Request) {
+
+	idStr := r.URL.Query().Get("id")
+
+	id, err := strconv.Atoi(idStr)
+	check.IfError(err)
+
+	log.Println("INFO: deleting record with ID =", id)
+
+	db.Delete(AppConfig.DB, id)
 
 	http.Redirect(w, r, r.Header.Get("Referer"), 302)
 }
