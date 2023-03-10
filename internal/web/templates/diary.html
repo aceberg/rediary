@@ -44,8 +44,27 @@
                 </tr>
                 </table>
             </div>
-            <div class="col"></div>
+            <div class="col">
+                <canvas id="myChart" style="max-height: 400px;"></canvas>
+            </div>
         </div>
     </div>
+    <script>
+        var xValues = {{ .Chart.Tag }};
+        var yValues = {{ .Chart.Count }};
+        var barColors = {{ .Chart.Color }};
+        
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    label: 'Count total by tag',
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            }
+        });
+    </script>
 {{ template "footer" }}
 {{ end }}

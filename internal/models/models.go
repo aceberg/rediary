@@ -18,6 +18,13 @@ type Action struct {
 	Tag  string `mapstructure:"tag"`
 }
 
+// ChartJS - data for charts
+type ChartJS struct {
+	Tag   []string
+	Color []string
+	Count []int
+}
+
 // Record - write to DB
 type Record struct {
 	ID    int    `db:"ID"`
@@ -36,4 +43,5 @@ type GuiData struct {
 	Records []Record
 	OneRec  Record
 	Themes  []string
+	Chart   ChartJS
 }

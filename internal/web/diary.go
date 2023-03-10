@@ -21,5 +21,21 @@ func diaryHandler(w http.ResponseWriter, r *http.Request) {
 		guiData.OneRec.Total = guiData.OneRec.Total + rec.Total
 	}
 
+	countTagMap := make(map[string]int)
+	for _, rec := range guiData.Records {
+		_, exists := countTagMap[rec.Tag]
+		if exists {
+			countTagMap[rec.Tag] = countTagMap[rec.Tag] + rec.Total
+		} else {
+			countTagMap[rec.Tag] = rec.Total
+		}
+	}
+
+	for tag, count := range countTagMap {
+		guiData.Chart.Tag = append(guiData.Chart.Tag, tag)
+		guiData.Chart.Color = append(guiData.Chart.Color, AppConfig.TagMap[tag])
+		guiData.Chart.Count = append(guiData.Chart.Count, count)
+	}
+
 	execTemplate(w, "diary", guiData)
 }
