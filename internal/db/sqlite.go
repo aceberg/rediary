@@ -31,7 +31,7 @@ func Select(path string) []models.Record {
 
 	dbx := connect(path)
 
-	err := dbx.Select(&recs, "SELECT * FROM records ORDER BY ID DESC")
+	err := dbx.Select(&recs, "SELECT * FROM records ORDER BY DATE DESC")
 	check.IfError(err)
 
 	return recs

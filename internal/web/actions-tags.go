@@ -59,8 +59,6 @@ func addTagHandler(w http.ResponseWriter, r *http.Request) {
 	color := r.FormValue("color")
 
 	if tag != "" {
-		tag = strings.ToLower(tag)
-
 		AppConfig.TagMap[tag] = color
 		conf.Write(AppConfig)
 	}

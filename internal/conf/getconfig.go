@@ -11,6 +11,7 @@ import (
 func Get(path string) models.Conf {
 	var config models.Conf
 	var actions []models.Action
+	var tags []models.TagType
 
 	viper.SetDefault("DB", "/data/rediary/sqlite.db")
 	viper.SetDefault("HOST", "0.0.0.0")
@@ -28,12 +29,14 @@ func Get(path string) models.Conf {
 	config.Host, _ = viper.Get("HOST").(string)
 	config.Port, _ = viper.Get("PORT").(string)
 	config.Theme, _ = viper.Get("THEME").(string)
-	config.TagMap = viper.GetStringMapString("tagmap")
 
 	err = viper.UnmarshalKey("actions", &actions)
 	check.IfError(err)
-
 	config.Actions = actions
+
+	err = viper.UnmarshalKey("tags", &tags)
+	check.IfError(err)
+	config.TagMap = structToMap(tags)
 
 	return config
 }
@@ -49,7 +52,7 @@ func Write(config models.Conf) {
 	viper.Set("port", config.Port)
 	viper.Set("theme", config.Theme)
 	viper.Set("actions", config.Actions)
-	viper.Set("tagmap", config.TagMap)
+	viper.Set("tags", mapToStruct(config.TagMap))
 
 	err := viper.WriteConfig()
 	check.IfError(err)

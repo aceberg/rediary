@@ -18,6 +18,12 @@ type Action struct {
 	Tag  string `mapstructure:"tag"`
 }
 
+// TagType - one tag
+type TagType struct {
+	Name  string `mapstructure:"name"`
+	Color string `mapstructure:"color"`
+}
+
 // ChartJS - data for charts
 type ChartJS struct {
 	Tag   []string
