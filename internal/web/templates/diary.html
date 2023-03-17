@@ -4,6 +4,21 @@
         <div class="row">
             <!-- <div class="col"></div> -->
             <div class="col">
+                <div class="row">
+                    <div class="col" style="max-width: 25%;">
+                        <a href="/diary?show=month"><button class="btn btn-outline-primary">Month</button></a>&nbsp;
+                        <a href="/diary?show=all"><button class="btn btn-outline-primary">All</button></a>&nbsp;
+                    </div>
+                    <div class="col" style="width: 100%;">
+                        <form action="/diary_show/" method="post" class="input-group">
+                            <span class="input-group-text">From</span>
+                            <input name="from" type="date" class="form-control">
+                            <span class="input-group-text">To</span>
+                            <input name="to" type="date" class="form-control">
+                            <button type="submit" class="btn btn-outline-primary">Show</button>
+                        </form>
+                    </div>
+                </div>
                 <table class="table table-striped">
                 <thead>
                     <th style="width: 0%;"></th>
@@ -18,7 +33,7 @@
                     <tr>
                         <td><i style="color: {{ .Color }};" class="bi bi-circle-fill"></i></td>
                         <td>{{ .Date }}</td>
-                        <td>{{ .Tag }}:{{ .Name }}</td>
+                        <td><a href="/diary?tag={{ .Tag }}">{{ .Tag }}</a>:{{ .Name }}</td>
                         <td>-{{ .Minus }}</td>
                         <td>+{{ .Plus }}</td>
                         <td>{{ .Total }}</td>

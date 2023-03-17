@@ -11,31 +11,31 @@ func diaryHandler(w http.ResponseWriter, r *http.Request) {
 	var guiData models.GuiData
 
 	guiData.Config = AppConfig
-
 	AllRecords = db.Select(AppConfig.DB)
-	guiData.Records = AllRecords
 
-	for _, rec := range AllRecords {
-		guiData.OneRec.Minus = guiData.OneRec.Minus + rec.Minus
-		guiData.OneRec.Plus = guiData.OneRec.Plus + rec.Plus
-		guiData.OneRec.Total = guiData.OneRec.Total + rec.Total
-	}
+	show := r.URL.Query().Get("show")
 
-	countTagMap := make(map[string]int)
-	for _, rec := range guiData.Records {
-		_, exists := countTagMap[rec.Tag]
-		if exists {
-			countTagMap[rec.Tag] = countTagMap[rec.Tag] + rec.Total
-		} else {
-			countTagMap[rec.Tag] = rec.Total
-		}
-	}
+	guiData.Records = filterRecords(AllRecords, show)
 
-	for tag, count := range countTagMap {
-		guiData.Chart.Tag = append(guiData.Chart.Tag, tag)
-		guiData.Chart.Color = append(guiData.Chart.Color, AppConfig.TagMap[tag])
-		guiData.Chart.Count = append(guiData.Chart.Count, count)
-	}
+	guiData.OneRec = countTotal(guiData.Records)
+	guiData.Chart = countTags(guiData.Records)
+
+	execTemplate(w, "diary", guiData)
+}
+
+func diaryShowHandler(w http.ResponseWriter, r *http.Request) {
+	var guiData models.GuiData
+
+	guiData.Config = AppConfig
+	AllRecords = db.Select(AppConfig.DB)
+
+	from := r.FormValue("from")
+	to := r.FormValue("to")
+
+	guiData.Records = fromDateToDate(AllRecords, from, to)
+
+	guiData.OneRec = countTotal(guiData.Records)
+	guiData.Chart = countTags(guiData.Records)
 
 	execTemplate(w, "diary", guiData)
 }
