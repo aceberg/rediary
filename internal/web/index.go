@@ -14,19 +14,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	guiData.Config = AppConfig
 
 	AllRecords = db.Select(AppConfig.DB)
+	guiData.Heat = generateHeatmap(AllRecords)
 
-	currentTime := time.Now()
+	today := time.Now().Format("2006-01-02")
 
-	guiData.OneRec.Date = currentTime.Format("2006-01-02")
-
-	for _, rec := range AllRecords {
-		if rec.Date == guiData.OneRec.Date {
-			guiData.Records = append(guiData.Records, rec)
-			guiData.OneRec.Minus = guiData.OneRec.Minus + rec.Minus
-			guiData.OneRec.Plus = guiData.OneRec.Plus + rec.Plus
-			guiData.OneRec.Total = guiData.OneRec.Total + rec.Total
-		}
-	}
+	guiData.Records = fromDateToDate(AllRecords, today, today)
+	guiData.OneRec = countTotal(guiData.Records)
+	guiData.OneRec.Date = today
 
 	execTemplate(w, "index", guiData)
 }

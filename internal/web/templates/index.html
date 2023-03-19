@@ -2,7 +2,11 @@
 <body>
     <div class="container mt-3">
         <div class="row">
-            <div class="col"></div>
+            <div class="col">
+                <div class="chart-container">
+                    <canvas id="matrix-chart" style="max-width: 75%;">
+                </div>
+            </div>
             <div class="col">
                 <table class="table">
                 <form action="/add_record/" method="post">
@@ -26,14 +30,12 @@
                         <td>Plus</td>
                         <td><input name="plus" type="range" min="0" max="5" step="1" class="range-plus"></td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <button type="submit" class="btn btn-primary">Add</button>
-                        </td>
-                    </tr>
-                </form>
                 </table>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+                </form>
+                <br><br>
                 <b>Today - {{ .OneRec.Date }}</b>
                 <br>
                 <table class="table table-striped">
@@ -71,5 +73,117 @@
             <div class="col"></div>
         </div>
     </div>
+    <script>
+        var heat = {{ .Heat }};
+
+        function lowerData() {
+            var ldata = [];
+            let arrayLength = heat.length;
+            for (let i = 0 ; i < arrayLength; i++) {
+                let val = heat[i];
+                ldata.push({
+                    x: val.X,
+                    y: val.Y,
+                    d: val.D,
+                    v: val.V
+                });
+            }
+            return ldata;
+        }
+
+        function countColor(v) {
+            var r = document.querySelector(':root');
+            var rs = getComputedStyle(r);
+            var minus =  rs.getPropertyValue('--minis-color');
+            var plus =  rs.getPropertyValue('--plus-color');
+            if (v < 0) {
+                const alpha = v/-5;
+			    return Chart.helpers.color(minus).alpha(alpha).rgbString();
+            } else {
+                const alpha = v/5;
+			    return Chart.helpers.color(plus).alpha(alpha).rgbString();
+            }
+        };
+        col = countColor(1);
+        console.log('COL =', col);
+
+        var ctx = document.getElementById("matrix-chart").getContext("2d");
+		window.myMatrix = new Chart(ctx, {
+			type: 'matrix',
+			data: {
+				datasets: [{
+					label: 'Heatmap',
+					data: lowerData(),
+					backgroundColor(context) {
+						const value = context.dataset.data[context.dataIndex].v;
+                        return countColor(value);
+					},
+                    borderColor(context) {
+						const value = context.dataset.data[context.dataIndex].v;
+						const alpha = 0.5;
+						return Chart.helpers.color('grey').alpha(alpha).rgbString();
+					},
+                    borderWidth: 1,
+                    hoverBackgroundColor: 'lightgrey',
+                    hoverBorderColor: 'grey',
+					width(context) {
+						const a = context.chart.chartArea;
+						if (!a) {
+							return 0;
+						}
+						return (a.right - a.left) / 7;
+					},
+					height(context) {
+						const a = context.chart.chartArea;
+						if (!a) {
+							return 0;
+						}
+						return (a.bottom - a.top) / 5;
+					}
+				}]
+			},
+			options: {
+                plugins: {
+                    legend: false,
+                    tooltip: {
+                        callbacks: {
+                            title() {
+                                return '';
+                            },
+                            label(context) {
+                                const v = context.dataset.data[context.dataIndex];
+                                return [v.v, v.d];
+                            }
+                        }
+					}
+                },
+				scales: {
+					x: {
+						type: 'category',
+						labels: ['Mo', 'Tu', 'We','Th','Fr','Sa','Su'],
+						ticks: {
+                            stepSize: 1,
+							display: true
+						},
+						grid: {
+							display: false
+						}
+					},
+					y: {
+						type: 'category',
+						labels: ['1', '2', '3', '4', '5'],
+						offset: true,
+                        reverse: false,
+						ticks: {
+							display: false
+						},
+						grid: {
+					    	display: false
+						}
+					}
+				}
+			}
+		});    
+    </script>
 {{ template "footer" }}
 {{ end }}

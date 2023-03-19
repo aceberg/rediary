@@ -31,6 +31,14 @@ type ChartJS struct {
 	Count []int
 }
 
+// HeatMap - data for heatmap
+type HeatMap struct {
+	X string
+	Y string
+	D string
+	V int
+}
+
 // Record - write to DB
 type Record struct {
 	ID    int    `db:"ID"`
@@ -50,4 +58,5 @@ type GuiData struct {
 	OneRec  Record
 	Themes  []string
 	Chart   ChartJS
+	Heat    []HeatMap
 }

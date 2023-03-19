@@ -1,4 +1,5 @@
 {{ define "header"}}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Resource Diary</title>
@@ -10,20 +11,25 @@
     <!-- Font for icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@1.3"></script>
     <style>
+      :root {
+        --minis-color:rgb(0, 174, 255);
+        --plus-color:rgb(255, 51, 0);
+      }
       .my-minus {
-        color:rgb(0, 174, 255);
+        color:var(--minis-color)
       }
       .my-plus {
-        color:rgb(255, 51, 0);
+        color:var(--plus-color)
       }
       .range-minus {
-        accent-color:rgb(0, 174, 255);
+        accent-color:var(--minis-color);
         width: 100%;
       }
       .range-plus {
-        accent-color:rgb(255, 51, 0);
+        accent-color:var(--plus-color);
         width: 100%;
       }
     </style>
