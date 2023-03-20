@@ -35,12 +35,33 @@
         </table>
         </div>
         <div class="col">
-            <div class="alert alert-info" role="alert">
-                <p>● After changing <b>DB Path</b>, <b>Host</b> or <b>Port</b> you need to restart the app</p>
-            </div>
-            <br>
             <form action="/clear/" method="post">
                 <button type="submit" class="btn btn-danger">Clear table</button>
+            </form>
+            <br>
+            <b>Colors</b>
+            <form action="/save_colors/" method="post">
+                <table class="table">
+                    <tr>
+                        <td style="max-width: 5%;">
+                            <i style="color: {{ .Config.ColorMinus }};" class="bi bi-circle-fill"></i>
+                        </td>
+                        <td>Minus</td>
+                        <td>
+                            <input name="minus" value="{{ .Config.ColorMinus }}" type="color" class="form-control form-control-color">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="max-width: 5%;">
+                            <i style="color: {{ .Config.ColorPlus }};" class="bi bi-circle-fill"></i>
+                        </td>
+                        <td>Plus</td>
+                        <td>
+                            <input name="plus" value="{{ .Config.ColorPlus }}" type="color" class="form-control form-control-color">
+                        </td>
+                    </tr>
+                </table>
+                <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
     </div>
@@ -50,7 +71,7 @@
             <form action="/add_tag/" method="post" class="input-group">
                 <input name="tag" type="text" class="form-control" placeholder="Tag">
                 <span class="input-group-text">Color picker</span>
-                <input name="color" type="color" class="input-group-text">
+                <input name="color" type="color" class="form-control form-control-color">
                 <button type="submit" class="btn btn-primary">Add</button>
             </form>
             <br>

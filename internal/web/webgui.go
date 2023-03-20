@@ -38,6 +38,7 @@ func Gui(config models.Conf) {
 	http.HandleFunc("/del_tag/", delTagHandler)
 	http.HandleFunc("/diary/", diaryHandler)
 	http.HandleFunc("/diary_show/", diaryShowHandler)
+	http.HandleFunc("/save_colors/", saveColorsHandler)
 	http.HandleFunc("/save_config/", saveConfigHandler)
 	err := http.ListenAndServe(address, nil)
 	check.IfError(err)

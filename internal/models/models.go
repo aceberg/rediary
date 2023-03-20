@@ -2,14 +2,16 @@ package models
 
 // Conf - web gui config
 type Conf struct {
-	DB       string
-	Host     string
-	Port     string
-	Theme    string
-	Icon     string
-	ConfPath string
-	Actions  []Action
-	TagMap   map[string]string
+	DB         string
+	Host       string
+	Port       string
+	Theme      string
+	Icon       string
+	ConfPath   string
+	ColorPlus  string
+	ColorMinus string
+	Actions    []Action
+	TagMap     map[string]string
 }
 
 // Action - one action

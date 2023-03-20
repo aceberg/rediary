@@ -15,8 +15,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@1.3"></script>
     <style>
       :root {
-        --minis-color:rgb(0, 174, 255);
-        --plus-color:rgb(255, 51, 0);
+        --minis-color:{{ .Config.ColorMinus }};
+        --plus-color:{{ .Config.ColorPlus }};
       }
       .my-minus {
         color:var(--minis-color)

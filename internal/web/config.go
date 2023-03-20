@@ -30,6 +30,16 @@ func saveConfigHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, r.Header.Get("Referer"), 302)
 }
 
+func saveColorsHandler(w http.ResponseWriter, r *http.Request) {
+
+	AppConfig.ColorMinus = r.FormValue("minus")
+	AppConfig.ColorPlus = r.FormValue("plus")
+
+	conf.Write(AppConfig)
+
+	http.Redirect(w, r, r.Header.Get("Referer"), 302)
+}
+
 func clearHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("INFO: deleting all records from DB")

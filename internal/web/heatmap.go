@@ -1,7 +1,6 @@
 package web
 
 import (
-	// "log"
 	"strconv"
 	"time"
 
@@ -27,10 +26,8 @@ func generateHeatmap(records []models.Record) []models.HeatMap {
 		}
 	}
 
-	// log.Println("MAP = ", totalByDay)
-
-	i := 0
-	for d := min; !d.After(max); d = d.AddDate(0, 0, 1) {
+	i := 5
+	for d := max; !d.Before(min); d = d.AddDate(0, 0, -1) {
 		heat.D = d.Format("2006-01-02")
 		val, exists := totalByDay[heat.D]
 		if exists {
@@ -39,19 +36,15 @@ func generateHeatmap(records []models.Record) []models.HeatMap {
 			heat.V = 0
 		}
 		heat.X = d.Weekday().String()[0:2]
+		heat.Y = strconv.Itoa(i)
 
-		if heat.X == "Mo" && i == 0 {
-			i = 1
+		heatMap = append(heatMap, heat)
+
+		if heat.X == "Mo" {
+			i--
 		}
-		if i != 0 {
-			heat.Y = strconv.Itoa(i)
-			heatMap = append(heatMap, heat)
-
-			// log.Println("HEAT = ", heat)
-
-			if heat.X == "Su" {
-				i++
-			}
+		if i < 1 {
+			break
 		}
 	}
 
