@@ -41,6 +41,7 @@
                 <table class="table table-striped">
                 <thead>
                     <th style="width: 0%;"></th>
+                    <th>Tag</th>
                     <th>Name</th>
                     <th>Minus</th>
                     <th>Plus</th>
@@ -49,13 +50,15 @@
                 {{ range .Records }}
                     <tr>
                         <td><i style="color: {{ .Color }};" class="bi bi-circle-fill"></i></td>
-                        <td>{{ .Tag }}:{{ .Name }}</td>
+                        <td><a href="/stat?tag={{ .Tag }}">{{ .Tag }}</a></td>
+                        <td>{{ .Name }}</td>
                         <td>-{{ .Minus }}</td>
                         <td>+{{ .Plus }}</td>
                         <td>{{ .Total }}</td>
                     </tr>
                 {{ end }}
                     <tr>
+                        <td></td>
                         <td></td>
                         <td><b>Summary</b></td>
                         <td><b class="my-minus">-{{ .OneRec.Minus }}</b></td>
@@ -70,10 +73,43 @@
                     </tr>
                 </table>
             </div>
-            <div class="col"></div>
+            <div class="col">
+                <canvas id="word-cloud"></canvas>
+            </div>
         </div>
     </div>
     <script>
+        // Word-cloud
+        var xValues = {{ .Chart.Tag }};
+        var yValues = {{ .Chart.Count }};
+
+        new Chart("word-cloud", {
+            type: 'wordCloud',
+            data: {
+                labels: xValues,
+                datasets: [{
+                    label: 'Month top',
+                    data: yValues
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: false,
+                    tooltip: {
+                        callbacks: {
+                            title() {
+                                return '';
+                            },
+                            label(context) {
+                                return ['Top last month'];
+                            }
+                        }
+					}
+                }
+            }            
+        });
+
+        // HeatMap
         var heat = {{ .Heat }};
 
         function lowerData() {
