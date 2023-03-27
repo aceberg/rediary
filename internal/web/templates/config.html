@@ -99,7 +99,7 @@
             <form action="/del_action/" method="post" class="input-group">
                 <select name="name" class="form-select">
                     {{ range .Config.Actions }}
-                        <option value="{{ .Tag }}:{{ .Name }}">{{ .Tag }}:{{ .Name }}</option>
+                        <option value="{{ .Tag }}:{{ .Name }}">{{ .Tag }}: {{ .Name }}</option>
                     {{ end }}
                 </select>
                 <button type="submit" class="btn btn-danger">Delete</button>
