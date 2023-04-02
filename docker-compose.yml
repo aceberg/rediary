@@ -1,0 +1,15 @@
+version: "3"
+services:
+  gans:
+    image: aceberg/rediary
+    restart: unless-stopped
+    ports:
+    - 8847:8847
+    volumes:
+    - ~/.dockerdata/rediary:/data/rediary       # app data
+    environment:
+      TZ: Asia/Novosibirsk                # required: needs your TZ for correct time
+      DB: "/data/rediary/sqlite.db"       # optional, default: /data/rediary/sqlite.db
+      HOST: "0.0.0.0"                     # optional, default: 0.0.0.0
+      PORT: "8847"                        # optional, default: 8847
+      THEME: "minty"                      # optional, default: minty
