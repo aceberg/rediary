@@ -42,3 +42,15 @@ func fromDateToDate(records []models.Record, min, max string) []models.Record {
 
 	return filtered
 }
+
+func filterByTag(records []models.Record, tag string) []models.Record {
+	var filtered []models.Record
+
+	for _, rec := range records {
+		if rec.Tag == tag {
+			filtered = append(filtered, rec)
+		}
+	}
+
+	return filtered
+}

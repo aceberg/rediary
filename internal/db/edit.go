@@ -29,6 +29,7 @@ func Insert(path string, rec models.Record) {
 	VALUES ('%s','%s','%s','%s','%d','%d','%d');`
 
 	rec.Name = quoteStr(rec.Name)
+	rec.Tag = quoteStr(rec.Tag)
 
 	sqlStatement = fmt.Sprintf(sqlStatement, rec.Date, rec.Tag, rec.Name, rec.Color, rec.Minus, rec.Plus, rec.Total)
 

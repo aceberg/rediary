@@ -16,7 +16,7 @@ func addActionHandler(w http.ResponseWriter, r *http.Request) {
 	action.Name = r.FormValue("name")
 	action.Tag = r.FormValue("tag")
 
-	if action.Name != "" {
+	if action.Name != "" && !strings.Contains(action.Name, ":") {
 		AppConfig.Actions = append(AppConfig.Actions, action)
 
 		sort.Slice(AppConfig.Actions, func(i, j int) bool {
@@ -58,7 +58,7 @@ func addTagHandler(w http.ResponseWriter, r *http.Request) {
 	tag := r.FormValue("tag")
 	color := r.FormValue("color")
 
-	if tag != "" {
+	if tag != "" && !strings.Contains(tag, ":") {
 		AppConfig.TagMap[tag] = color
 		conf.Write(AppConfig)
 	}

@@ -50,7 +50,7 @@
                 {{ range .Records }}
                     <tr>
                         <td><i style="color: {{ .Color }};" class="bi bi-circle-fill"></i></td>
-                        <td><a href="/stat?tag={{ .Tag }}">{{ .Tag }}</a></td>
+                        <td><a href="/diary?tag={{ .Tag }}">{{ .Tag }}</a></td>
                         <td>{{ .Name }}</td>
                         <td>-{{ .Minus }}</td>
                         <td>+{{ .Plus }}</td>
@@ -133,10 +133,10 @@
             var minus =  rs.getPropertyValue('--minis-color');
             var plus =  rs.getPropertyValue('--plus-color');
             if (v < 0) {
-                const alpha = v/-5;
+                const alpha = v/-10;
 			    return Chart.helpers.color(minus).alpha(alpha).rgbString();
             } else {
-                const alpha = v/5;
+                const alpha = v/10;
 			    return Chart.helpers.color(plus).alpha(alpha).rgbString();
             }
         };

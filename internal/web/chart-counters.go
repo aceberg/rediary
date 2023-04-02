@@ -39,6 +39,29 @@ func countTags(records []models.Record) models.ChartJS {
 	return chart
 }
 
+func countNames(records []models.Record) models.ChartJS {
+	var chart models.ChartJS
+
+	countTagMap := make(map[string]int)
+
+	for _, rec := range records {
+		_, exists := countTagMap[rec.Name]
+		if exists {
+			countTagMap[rec.Name] = countTagMap[rec.Name] + rec.Total
+		} else {
+			countTagMap[rec.Name] = rec.Total
+		}
+	}
+
+	for tag, count := range countTagMap {
+		chart.Tag = append(chart.Tag, tag)
+		// chart.Color = append(chart.Color, AppConfig.TagMap[tag])
+		chart.Count = append(chart.Count, count)
+	}
+
+	return chart
+}
+
 func countCloud(records []models.Record) models.ChartJS {
 	var chart models.ChartJS
 

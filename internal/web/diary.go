@@ -14,11 +14,17 @@ func diaryHandler(w http.ResponseWriter, r *http.Request) {
 	AllRecords = db.Select(AppConfig.DB)
 
 	show := r.URL.Query().Get("show")
+	tag := r.URL.Query().Get("tag")
 
-	guiData.Records = filterRecords(AllRecords, show)
-
-	guiData.OneRec = countTotal(guiData.Records)
-	guiData.Chart = countTags(guiData.Records)
+	if tag == "" {
+		guiData.Records = filterRecords(AllRecords, show)
+		guiData.OneRec = countTotal(guiData.Records)
+		guiData.Chart = countTags(guiData.Records)
+	} else {
+		guiData.Records = filterByTag(AllRecords, tag)
+		guiData.OneRec = countTotal(guiData.Records)
+		guiData.Chart = countNames(guiData.Records)
+	}
 
 	execTemplate(w, "diary", guiData)
 }
