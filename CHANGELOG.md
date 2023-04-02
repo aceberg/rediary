@@ -2,6 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2023-04-02
+### Added
+- Filter by tag
+
 ## [0.1.3] - 2023-03-27
 ### Added
 - Tag cloud

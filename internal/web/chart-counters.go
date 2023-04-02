@@ -55,7 +55,6 @@ func countNames(records []models.Record) models.ChartJS {
 
 	for tag, count := range countTagMap {
 		chart.Tag = append(chart.Tag, tag)
-		// chart.Color = append(chart.Color, AppConfig.TagMap[tag])
 		chart.Count = append(chart.Count, count)
 	}
 

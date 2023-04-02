@@ -11,17 +11,21 @@ func diaryHandler(w http.ResponseWriter, r *http.Request) {
 	var guiData models.GuiData
 
 	guiData.Config = AppConfig
-	AllRecords = db.Select(AppConfig.DB)
 
 	show := r.URL.Query().Get("show")
 	tag := r.URL.Query().Get("tag")
 
 	if tag == "" {
+		if show == "" {
+			AllRecords = db.Select(AppConfig.DB)
+			show = "week"
+		}
 		guiData.Records = filterRecords(AllRecords, show)
 		guiData.OneRec = countTotal(guiData.Records)
 		guiData.Chart = countTags(guiData.Records)
 	} else {
-		guiData.Records = filterByTag(AllRecords, tag)
+		AllRecords = filterByTag(AllRecords, tag)
+		guiData.Records = filterRecords(AllRecords, "week")
 		guiData.OneRec = countTotal(guiData.Records)
 		guiData.Chart = countNames(guiData.Records)
 	}
@@ -33,7 +37,6 @@ func diaryShowHandler(w http.ResponseWriter, r *http.Request) {
 	var guiData models.GuiData
 
 	guiData.Config = AppConfig
-	AllRecords = db.Select(AppConfig.DB)
 
 	from := r.FormValue("from")
 	to := r.FormValue("to")
