@@ -37,18 +37,21 @@ func delActionHandler(w http.ResponseWriter, r *http.Request) {
 	var newActions []models.Action
 
 	tagname := r.FormValue("name")
-	tnslice := strings.Split(tagname, ":")
-	tag := tnslice[0]
-	name := tnslice[1]
 
-	for _, a := range AppConfig.Actions {
-		if a.Tag != tag || a.Name != name {
-			newActions = append(newActions, a)
+	if tagname != "" {
+		tnslice := strings.Split(tagname, ":")
+		tag := tnslice[0]
+		name := tnslice[1]
+
+		for _, a := range AppConfig.Actions {
+			if a.Tag != tag || a.Name != name {
+				newActions = append(newActions, a)
+			}
 		}
-	}
-	AppConfig.Actions = newActions
+		AppConfig.Actions = newActions
 
-	conf.Write(AppConfig)
+		conf.Write(AppConfig)
+	}
 
 	http.Redirect(w, r, r.Header.Get("Referer"), 302)
 }
