@@ -10,6 +10,7 @@
 Emotional resource diary
 
 - [Quick start](https://github.com/aceberg/rediary#quick-start)
+- [Usage](https://github.com/aceberg/rediary#usage)
 - [Config](https://github.com/aceberg/rediary#config)
 - [Options](https://github.com/aceberg/rediary#options)
 - [Thanks](https://github.com/aceberg/rediary#thanks)
@@ -27,6 +28,9 @@ docker run --name rediary \
 aceberg/rediary
 ```
 Or use [docker-compose.yml](docker-compose.yml)
+
+## Usage
+Add your own Tags and Actions on Config page.
 
 ## Config
 
