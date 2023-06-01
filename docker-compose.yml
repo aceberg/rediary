@@ -1,12 +1,12 @@
 version: "3"
 services:
-  gans:
+  rediary:
     image: aceberg/rediary
     restart: unless-stopped
     ports:
     - 8847:8847
     volumes:
-    - ~/.dockerdata/rediary:/data/rediary       # app data
+    - ~/.dockerdata/rediary:/data/rediary       # app data (set your own path instead of dockerdata)
     environment:
       TZ: Asia/Novosibirsk                # required: needs your TZ for correct time
       DB: "/data/rediary/sqlite.db"       # optional, default: /data/rediary/sqlite.db
