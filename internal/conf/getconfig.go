@@ -17,6 +17,7 @@ func Get(path string) models.Conf {
 	viper.SetDefault("HOST", "0.0.0.0")
 	viper.SetDefault("PORT", "8847")
 	viper.SetDefault("THEME", "minty")
+	viper.SetDefault("BGCOLOR", "light")
 	viper.SetDefault("COLORPLUS", "#ff3300")
 	viper.SetDefault("COLORMINUS", "#00aeff")
 
@@ -31,6 +32,7 @@ func Get(path string) models.Conf {
 	config.Host, _ = viper.Get("HOST").(string)
 	config.Port, _ = viper.Get("PORT").(string)
 	config.Theme, _ = viper.Get("THEME").(string)
+	config.BgColor, _ = viper.Get("BGCOLOR").(string)
 	config.ColorPlus, _ = viper.Get("COLORPLUS").(string)
 	config.ColorMinus, _ = viper.Get("COLORMINUS").(string)
 
@@ -55,6 +57,7 @@ func Write(config models.Conf) {
 	viper.Set("host", config.Host)
 	viper.Set("port", config.Port)
 	viper.Set("theme", config.Theme)
+	viper.Set("BGCOLOR", config.BgColor)
 	viper.Set("colorminus", config.ColorMinus)
 	viper.Set("colorplus", config.ColorPlus)
 	viper.Set("actions", config.Actions)

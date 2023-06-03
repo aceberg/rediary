@@ -6,6 +6,7 @@ type Conf struct {
 	Host       string
 	Port       string
 	Theme      string
+	BgColor    string
 	Icon       string
 	ConfPath   string
 	ColorPlus  string

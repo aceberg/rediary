@@ -43,6 +43,7 @@ Configuration can be done through config file or environment variables
 | HOST | Listen address | 0.0.0.0 |
 | PORT   | Port for web GUI | 8847 |
 | THEME | Any theme name from https://bootswatch.com in lowcase | minty |
+| BGCOLOR | Background color: light or dark | light |
 | TZ | Set your timezone for correct time | "" |
 
 ## Options
