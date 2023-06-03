@@ -112,6 +112,15 @@
         // HeatMap
         var heat = {{ .Heat }};
 
+        const mapWeek = new Map();
+        mapWeek.set('Mo', 0);
+        mapWeek.set('Tu', 1);
+        mapWeek.set('We', 2);
+        mapWeek.set('Th', 3);
+        mapWeek.set('Fr', 4);
+        mapWeek.set('Sa', 5);
+        mapWeek.set('Su', 6);
+
         function lowerData() {
             var ldata = [];
             let arrayLength = heat.length;
@@ -141,7 +150,7 @@
             }
         };
         col = countColor(1);
-        console.log('COL =', col);
+        // console.log('COL =', col);
 
         var ctx = document.getElementById("matrix-chart").getContext("2d");
 		window.myMatrix = new Chart(ctx, {
@@ -179,6 +188,24 @@
 				}]
 			},
 			options: {
+                onClick: (e) => {
+                    const canvasPosition = Chart.helpers.getRelativePosition(e, window.myMatrix);
+
+                    // Substitute the appropriate scale IDs
+                    const dataX = window.myMatrix.scales.x.getValueForPixel(canvasPosition.x);
+                    const dataY = window.myMatrix.scales.y.getValueForPixel(canvasPosition.y);
+
+                    let arrayLength = heat.length;
+                    for (let i = 0 ; i < arrayLength; i++) {
+                        let val = heat[i];
+                        if (val.Y == dataY && mapWeek.get(val.X) == dataX) {
+                            var dayD = val.D;
+                            // console.log('dayD =', dayD);
+                        }
+                    }
+
+                    window.location.href = "/diary_show?from="+dayD+"&to="+dayD+"";
+                },
                 plugins: {
                     legend: false,
                     tooltip: {
@@ -207,7 +234,7 @@
 					},
 					y: {
 						type: 'category',
-						labels: ['1', '2', '3', '4', '5'],
+						labels: ['0','1', '2', '3', '4'],
 						offset: true,
                         reverse: false,
 						ticks: {

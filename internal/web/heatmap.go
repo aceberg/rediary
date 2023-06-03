@@ -26,7 +26,7 @@ func generateHeatmap(records []models.Record) []models.HeatMap {
 		}
 	}
 
-	i := 5
+	i := 4
 	for d := max; !d.Before(min); d = d.AddDate(0, 0, -1) {
 		heat.D = d.Format("2006-01-02")
 		val, exists := totalByDay[heat.D]
@@ -43,7 +43,7 @@ func generateHeatmap(records []models.Record) []models.HeatMap {
 		if heat.X == "Mo" {
 			i--
 		}
-		if i < 1 {
+		if i < 0 {
 			break
 		}
 	}

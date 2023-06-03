@@ -38,8 +38,8 @@ func diaryShowHandler(w http.ResponseWriter, r *http.Request) {
 
 	guiData.Config = AppConfig
 
-	from := r.FormValue("from")
-	to := r.FormValue("to")
+	from := r.URL.Query().Get("from")
+	to := r.URL.Query().Get("to")
 
 	guiData.Records = fromDateToDate(AllRecords, from, to)
 

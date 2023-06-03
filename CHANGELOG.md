@@ -2,6 +2,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.1.5] - 2023-06-03
+### Added
+- Background color: light or dark
+- Clear table button warning
+
 ## [0.1.4] - 2023-04-02
 ### Added
 - Filter by tag
