@@ -2,6 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2023-06-04
+### Added
+- Notes in diary records
+
 ## [0.1.5] - 2023-06-04
 ### Added
 - Background color: light or dark
