@@ -17,12 +17,13 @@ func connect(path string) *sqlx.DB {
 	return dbx
 }
 
-func exec(path string, sqlStatement string) {
+func exec(path string, sqlStatement string) error {
 
 	dbx := connect(path)
 
 	_, err := dbx.Exec(sqlStatement)
-	check.IfError(err)
+
+	return err
 }
 
 // Select - select all from DB

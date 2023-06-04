@@ -18,6 +18,7 @@ func Gui(config models.Conf) {
 	AppConfig.Icon = Icon
 
 	db.Create(AppConfig.DB)
+	db.Migrate(AppConfig.DB)
 	AllRecords = db.Select(AppConfig.DB)
 
 	log.Println("INFO: starting web gui with", AppConfig.ConfPath)

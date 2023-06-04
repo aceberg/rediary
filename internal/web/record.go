@@ -19,6 +19,7 @@ func addRecordHandler(w http.ResponseWriter, r *http.Request) {
 	name := r.FormValue("name")
 	minus := r.FormValue("minus")
 	plus := r.FormValue("plus")
+	note := r.FormValue("note")
 
 	if name != "" {
 		n := strings.Split(name, ":")
@@ -30,6 +31,8 @@ func addRecordHandler(w http.ResponseWriter, r *http.Request) {
 		rec.Minus, _ = strconv.Atoi(minus)
 		rec.Plus, _ = strconv.Atoi(plus)
 		rec.Total = rec.Plus - rec.Minus
+
+		rec.Note = note
 
 		if date == "" {
 			currentTime := time.Now()

@@ -31,7 +31,7 @@
                     <th></th>
                 </thead>
                 {{ range .Records }}
-                    <tr>
+                    <tr title="{{ .Note }}">
                         <td><i style="color: {{ .Color }};" class="bi bi-circle-fill"></i></td>
                         <td>{{ .Date }}</td>
                         <td><a href="/diary?tag={{ .Tag }}">{{ .Tag }}</a></td>

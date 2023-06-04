@@ -31,10 +31,19 @@
                         <td><input name="plus" type="range" min="0" max="5" step="1" class="range-plus"></td>
                     </tr>
                 </table>
+                <textarea name="note" class="form-control" placeholder="Note" rows="3" title="Hover mouse over existing records to see their notes"></textarea>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Add</button>
                 </div>
                 </form>
+            </div>
+            <div class="col">
+                <canvas id="word-cloud"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
                 <br><br>
                 <b>Today - {{ .OneRec.Date }}</b>
                 <br>
@@ -48,7 +57,7 @@
                     <th>Total</th>
                 </thead>
                 {{ range .Records }}
-                    <tr>
+                    <tr title="{{ .Note }}">
                         <td><i style="color: {{ .Color }};" class="bi bi-circle-fill"></i></td>
                         <td><a href="/diary?tag={{ .Tag }}">{{ .Tag }}</a></td>
                         <td>{{ .Name }}</td>
@@ -58,9 +67,7 @@
                     </tr>
                 {{ end }}
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td><b>Summary</b></td>
+                        <td colspan="3"><b>Summary</b></td>
                         <td><b class="my-minus">-{{ .OneRec.Minus }}</b></td>
                         <td><b class="my-plus">+{{ .OneRec.Plus }}</b></td>
                         <td>
@@ -73,9 +80,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="col">
-                <canvas id="word-cloud"></canvas>
-            </div>
+            <div class="col"></div>
         </div>
     </div>
     <script>

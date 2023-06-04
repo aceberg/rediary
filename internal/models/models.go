@@ -49,6 +49,7 @@ type Record struct {
 	Tag   string `db:"TAG"`
 	Name  string `db:"NAME"`
 	Color string `db:"COLOR"`
+	Note  string `db:"NOTE"`
 	Minus int    `db:"MINUS"`
 	Plus  int    `db:"PLUS"`
 	Total int    `db:"TOTAL"`
