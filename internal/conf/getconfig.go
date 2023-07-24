@@ -61,7 +61,7 @@ func Get(path string) (models.Conf, auth.Conf) {
 }
 
 // Write - write config to file
-func Write(config models.Conf) {
+func Write(config models.Conf, authConf auth.Conf) {
 
 	viper.SetConfigFile(config.ConfPath)
 	viper.SetConfigType("yaml")
@@ -76,10 +76,10 @@ func Write(config models.Conf) {
 	viper.Set("actions", config.Actions)
 	viper.Set("tags", mapToStruct(config.TagMap))
 
-	// viper.Set("auth", authConf.Auth)
-	// viper.Set("auth_user", authConf.User)
-	// viper.Set("auth_password", authConf.Password)
-	// viper.Set("auth_expire", authConf.ExpStr)
+	viper.Set("auth", authConf.Auth)
+	viper.Set("auth_user", authConf.User)
+	viper.Set("auth_password", authConf.Password)
+	viper.Set("auth_expire", authConf.ExpStr)
 
 	err := viper.WriteConfig()
 	check.IfError(err)

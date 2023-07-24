@@ -27,7 +27,7 @@ func addActionHandler(w http.ResponseWriter, r *http.Request) {
 			return AppConfig.Actions[i].Tag < AppConfig.Actions[j].Tag
 		})
 
-		conf.Write(AppConfig)
+		conf.Write(AppConfig, authConf)
 	}
 
 	http.Redirect(w, r, r.Header.Get("Referer"), 302)
@@ -50,7 +50,7 @@ func delActionHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		AppConfig.Actions = newActions
 
-		conf.Write(AppConfig)
+		conf.Write(AppConfig, authConf)
 	}
 
 	http.Redirect(w, r, r.Header.Get("Referer"), 302)
@@ -63,7 +63,7 @@ func addTagHandler(w http.ResponseWriter, r *http.Request) {
 
 	if tag != "" && !strings.Contains(tag, ":") {
 		AppConfig.TagMap[tag] = color
-		conf.Write(AppConfig)
+		conf.Write(AppConfig, authConf)
 	}
 
 	http.Redirect(w, r, r.Header.Get("Referer"), 302)
@@ -75,7 +75,7 @@ func delTagHandler(w http.ResponseWriter, r *http.Request) {
 
 	delete(AppConfig.TagMap, tag)
 
-	conf.Write(AppConfig)
+	conf.Write(AppConfig, authConf)
 
 	http.Redirect(w, r, r.Header.Get("Referer"), 302)
 }

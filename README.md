@@ -45,6 +45,10 @@ Configuration can be done through config file or environment variables
 | THEME | Any theme name from https://bootswatch.com in lowcase | minty |
 | BGCOLOR | Background color: light or dark | light |
 | TZ | Set your timezone for correct time | "" |
+| AUTH | Enable Session-Cookie authentication | false |
+| AUTH_USER | Username | "" |
+| AUTH_PASSWORD | Encrypted password (bcrypt) | "" |
+| AUTH_EXPIRE | Session expire time. Can be **m, h, d** or **M**. | 7d |
 
 ## Options
 

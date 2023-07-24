@@ -4,7 +4,7 @@ import (
 	// "log"
 	"net/http"
 
-	// "github.com/aceberg/rediary/internal/auth"
+	"github.com/aceberg/rediary/internal/auth"
 	"github.com/aceberg/rediary/internal/conf"
 	"github.com/aceberg/rediary/internal/models"
 )
@@ -22,13 +22,26 @@ func authConfHandler(w http.ResponseWriter, r *http.Request) {
 
 func saveAuthHandler(w http.ResponseWriter, r *http.Request) {
 
-	AppConfig.DB = r.FormValue("db")
-	AppConfig.Host = r.FormValue("host")
-	AppConfig.Port = r.FormValue("port")
-	AppConfig.Theme = r.FormValue("theme")
-	AppConfig.BgColor = r.FormValue("bgcolor")
+	authConf.User = r.FormValue("user")
+	authConf.ExpStr = r.FormValue("expire")
 
-	conf.Write(AppConfig)
+	authStr := r.FormValue("auth")
+	pw := r.FormValue("password")
+
+	if authStr == "on" {
+		authConf.Auth = true
+	} else {
+		authConf.Auth = false
+	}
+	AppConfig.Auth = authConf.Auth
+
+	if pw != "" {
+		authConf.Password = auth.HashPassword(pw)
+	}
+
+	authConf.Expire = auth.ToTime(authConf.ExpStr)
+
+	conf.Write(AppConfig, authConf)
 
 	http.Redirect(w, r, r.Header.Get("Referer"), 302)
 }

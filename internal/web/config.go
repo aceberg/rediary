@@ -26,7 +26,7 @@ func saveConfigHandler(w http.ResponseWriter, r *http.Request) {
 	AppConfig.Theme = r.FormValue("theme")
 	AppConfig.BgColor = r.FormValue("bgcolor")
 
-	conf.Write(AppConfig)
+	conf.Write(AppConfig, authConf)
 
 	http.Redirect(w, r, r.Header.Get("Referer"), 302)
 }
@@ -36,7 +36,7 @@ func saveColorsHandler(w http.ResponseWriter, r *http.Request) {
 	AppConfig.ColorMinus = r.FormValue("minus")
 	AppConfig.ColorPlus = r.FormValue("plus")
 
-	conf.Write(AppConfig)
+	conf.Write(AppConfig, authConf)
 
 	http.Redirect(w, r, r.Header.Get("Referer"), 302)
 }
