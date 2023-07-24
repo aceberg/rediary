@@ -6,7 +6,7 @@ import (
 )
 
 // Auth - main auth func
-func Auth(next http.HandlerFunc, conf Conf) http.HandlerFunc {
+func Auth(next http.HandlerFunc, conf *Conf) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		if !conf.Auth || conf.User == "" || conf.Password == "" {

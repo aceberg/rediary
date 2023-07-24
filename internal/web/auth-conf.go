@@ -1,7 +1,7 @@
 package web
 
 import (
-	// "log"
+	"log"
 	"net/http"
 
 	"github.com/aceberg/rediary/internal/auth"
@@ -40,6 +40,11 @@ func saveAuthHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	authConf.Expire = auth.ToTime(authConf.ExpStr)
+
+	if authConf.Auth && (authConf.User == "" || authConf.Password == "") {
+		log.Println("WARNING: Auth won't work with empty login or password.")
+		authConf.Auth = false
+	}
 
 	conf.Write(AppConfig, authConf)
 
