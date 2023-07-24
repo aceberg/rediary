@@ -1,5 +1,9 @@
 package models
 
+import (
+	"github.com/aceberg/rediary/internal/auth"
+)
+
 // Conf - web gui config
 type Conf struct {
 	DB         string
@@ -13,6 +17,7 @@ type Conf struct {
 	ColorMinus string
 	Actions    []Action
 	TagMap     map[string]string
+	Auth       bool
 }
 
 // Action - one action
@@ -63,4 +68,5 @@ type GuiData struct {
 	Themes  []string
 	Chart   ChartJS
 	Heat    []HeatMap
+	Auth    auth.Conf
 }

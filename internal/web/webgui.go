@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/aceberg/rediary/internal/auth"
 	"github.com/aceberg/rediary/internal/check"
 	"github.com/aceberg/rediary/internal/conf"
 	"github.com/aceberg/rediary/internal/db"
@@ -13,7 +14,7 @@ import (
 // Gui - start web server
 func Gui(config models.Conf) {
 
-	AppConfig = conf.Get(config.ConfPath)
+	AppConfig, authConf = conf.Get(config.ConfPath)
 	AppConfig.ConfPath = config.ConfPath
 	AppConfig.Icon = Icon
 
@@ -28,20 +29,24 @@ func Gui(config models.Conf) {
 	log.Printf("Web GUI at http://%s", address)
 	log.Println("=================================== ")
 
-	http.HandleFunc("/", indexHandler)
-	http.HandleFunc("/add_action/", addActionHandler)
-	http.HandleFunc("/add_record/", addRecordHandler)
-	http.HandleFunc("/add_tag/", addTagHandler)
-	http.HandleFunc("/clear/", clearHandler)
-	http.HandleFunc("/config/", configHandler)
-	http.HandleFunc("/del_action/", delActionHandler)
-	http.HandleFunc("/del_record/", delRecordHandler)
-	http.HandleFunc("/del_tag/", delTagHandler)
-	http.HandleFunc("/diary/", diaryHandler)
-	http.HandleFunc("/diary_show/", diaryShowHandler)
-	http.HandleFunc("/save_colors/", saveColorsHandler)
-	http.HandleFunc("/save_config/", saveConfigHandler)
-	http.HandleFunc("/stat/", statHandler)
+	http.HandleFunc("/login/", loginHandler)
+
+	http.HandleFunc("/", auth.Auth(indexHandler, authConf))
+	http.HandleFunc("/add_action/", auth.Auth(addActionHandler, authConf))
+	http.HandleFunc("/add_record/", auth.Auth(addRecordHandler, authConf))
+	http.HandleFunc("/add_tag/", auth.Auth(addTagHandler, authConf))
+	http.HandleFunc("/auth_conf/", auth.Auth(authConfHandler, authConf))
+	http.HandleFunc("/auth_save/", auth.Auth(saveAuthHandler, authConf))
+	http.HandleFunc("/clear/", auth.Auth(clearHandler, authConf))
+	http.HandleFunc("/config/", auth.Auth(configHandler, authConf))
+	http.HandleFunc("/del_action/", auth.Auth(delActionHandler, authConf))
+	http.HandleFunc("/del_record/", auth.Auth(delRecordHandler, authConf))
+	http.HandleFunc("/del_tag/", auth.Auth(delTagHandler, authConf))
+	http.HandleFunc("/diary/", auth.Auth(diaryHandler, authConf))
+	http.HandleFunc("/diary_show/", auth.Auth(diaryShowHandler, authConf))
+	http.HandleFunc("/save_colors/", auth.Auth(saveColorsHandler, authConf))
+	http.HandleFunc("/save_config/", auth.Auth(saveConfigHandler, authConf))
+	http.HandleFunc("/stat/", auth.Auth(statHandler, authConf))
 	err := http.ListenAndServe(address, nil)
 	check.IfError(err)
 }

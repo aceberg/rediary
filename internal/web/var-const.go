@@ -3,10 +3,13 @@ package web
 import (
 	"embed"
 
+	"github.com/aceberg/rediary/internal/auth"
 	"github.com/aceberg/rediary/internal/models"
 )
 
 var (
+	// auth config
+	authConf auth.Conf
 	// AppConfig - config for Web Gui
 	AppConfig models.Conf
 	// AllRecords - all records
