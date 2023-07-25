@@ -1,0 +1,12 @@
+[Unit]
+Description=rediary
+Documentation=https://github.com/aceberg/rediary
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/rediary -c /etc/rediary/config.yaml
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

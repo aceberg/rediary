@@ -9,21 +9,26 @@ func timeParse(timeout string) (time.Duration, error) {
 	var err error
 	var t time.Duration
 
-	suffix := timeout[len(timeout)-1]
+	length := len(timeout)
+	if length > 1 {
+		suffix := timeout[length-1]
 
-	switch string(suffix) {
-	case "h":
-		t, err = time.ParseDuration(timeout)
-	case "m":
-		t, err = time.ParseDuration(timeout)
-	case "d": //day
-		t, err = time.ParseDuration(timeout[:len(timeout)-1] + "h")
-		t = 24 * t
-	case "M": // month
-		t, err = time.ParseDuration(timeout[:len(timeout)-1] + "h")
-		t = 730 * t
-	default:
-		err = errors.New("TimeParse: wrong time format")
+		switch string(suffix) {
+		case "h":
+			t, err = time.ParseDuration(timeout)
+		case "m":
+			t, err = time.ParseDuration(timeout)
+		case "d": //day
+			t, err = time.ParseDuration(timeout[:length-1] + "h")
+			t = 24 * t
+		case "M": // month
+			t, err = time.ParseDuration(timeout[:length-1] + "h")
+			t = 730 * t
+		default:
+			err = errors.New("ERROR: TimeParse: wrong time format")
+		}
+	} else {
+		err = errors.New("ERROR: TimeParse: wrong time format")
 	}
 
 	return t, err
