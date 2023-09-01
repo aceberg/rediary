@@ -47,7 +47,7 @@ Configuration can be done through config file or environment variables
 | TZ | Set your timezone for correct time | "" |
 | AUTH | Enable Session-Cookie authentication | false |
 | AUTH_USER | Username | "" |
-| AUTH_PASSWORD | Encrypted password (bcrypt) | "" |
+| AUTH_PASSWORD | Encrypted password (bcrypt). [How to encrypt password with bcrypt?](docs/BCRYPT.md) | "" |
 | AUTH_EXPIRE | Session expiration time. A number and suffix: **m, h, d** or **M**. | 7d |
 
 ## Options
