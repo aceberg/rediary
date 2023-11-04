@@ -2,6 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2023-11-04
+### Added
+- Adjustable mood max
+
 ## [1.0.0] - 2023-07-25
 ### Added
 - Session-Cookie Auth

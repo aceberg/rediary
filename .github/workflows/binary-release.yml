@@ -8,7 +8,7 @@ on:
 jobs:
   generate:
     name: Create release-artifacts
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
         uses: actions/checkout@master
@@ -17,6 +17,11 @@ jobs:
         uses: c-py/action-dotenv-to-setenv@v2
         with:
           env-file: .version
+
+      - uses: actions/setup-go@v4
+        with:
+          go-version: 'stable'
+      - run: go version
 
       - name: Build and archive
         run: build/ci/build.sh ${{ env.VERSION }}
