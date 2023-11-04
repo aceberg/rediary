@@ -23,6 +23,7 @@ func Get(path string) (models.Conf, auth.Conf) {
 	viper.SetDefault("BGCOLOR", "light")
 	viper.SetDefault("COLORPLUS", "#ff3300")
 	viper.SetDefault("COLORMINUS", "#00aeff")
+	viper.SetDefault("MOODMAX", "5")
 	viper.SetDefault("AUTH_USER", "")
 	viper.SetDefault("AUTH_PASSWORD", "")
 	viper.SetDefault("AUTH_EXPIRE", "7d")
@@ -41,6 +42,7 @@ func Get(path string) (models.Conf, auth.Conf) {
 	config.BgColor, _ = viper.Get("BGCOLOR").(string)
 	config.ColorPlus, _ = viper.Get("COLORPLUS").(string)
 	config.ColorMinus, _ = viper.Get("COLORMINUS").(string)
+	config.MoodMax, _ = viper.Get("MOODMAX").(string)
 	authConf.Auth = viper.GetBool("AUTH")
 	authConf.User, _ = viper.Get("AUTH_USER").(string)
 	authConf.Password, _ = viper.Get("AUTH_PASSWORD").(string)
@@ -73,6 +75,7 @@ func Write(config models.Conf, authConf auth.Conf) {
 	viper.Set("BGCOLOR", config.BgColor)
 	viper.Set("colorminus", config.ColorMinus)
 	viper.Set("colorplus", config.ColorPlus)
+	viper.Set("moodmax", config.MoodMax)
 	viper.Set("actions", config.Actions)
 	viper.Set("tags", mapToStruct(config.TagMap))
 

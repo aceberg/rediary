@@ -15,6 +15,7 @@ type Conf struct {
 	ConfPath   string
 	ColorPlus  string
 	ColorMinus string
+	MoodMax    string
 	Actions    []Action
 	TagMap     map[string]string
 	Auth       bool

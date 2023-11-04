@@ -24,11 +24,11 @@
                     </tr>
                     <tr>
                         <td>Minus</td>
-                        <td><input name="minus" type="range" min="0" max="5" step="1" class="range-minus"></td>
+                        <td><input name="minus" type="range" min="0" max="{{ .Config.MoodMax }}" step="1" class="range-minus"></td>
                     </tr>
                     <tr>
                         <td>Plus</td>
-                        <td><input name="plus" type="range" min="0" max="5" step="1" class="range-plus"></td>
+                        <td><input name="plus" type="range" min="0" max="{{ .Config.MoodMax }}" step="1" class="range-plus"></td>
                     </tr>
                 </table>
                 <textarea name="note" class="form-control" placeholder="Note" rows="2" title="Hover mouse over existing records to see their notes"></textarea>
